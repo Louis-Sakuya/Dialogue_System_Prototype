@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b48ayjcm230p5"]
+[gd_scene load_steps=10 format=3 uid="uid://b48ayjcm230p5"]
 
 [ext_resource type="Script" uid="uid://bbfd0m2421kcu" path="res://Scenes/dialog_manager.gd" id="1_jv6wh"]
 [ext_resource type="Resource" uid="uid://b2mhext50nmnx" path="res://Dialogues/text_dialog.tres" id="2_6ev3c"]
 [ext_resource type="Texture2D" uid="uid://kgtcjxjpevyw" path="res://assets/top1.png" id="2_iacmt"]
 [ext_resource type="Texture2D" uid="uid://bhyhiikfcgppi" path="res://assets/jg2.png" id="2_x6ack"]
 [ext_resource type="Texture2D" uid="uid://bysq34dh8fyq" path="res://assets/adc2.png" id="3_iacmt"]
+[ext_resource type="Script" uid="uid://bckd0m2j3cuys" path="res://Scripts/csv_importer.gd" id="6_6ev3c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iacmt"]
 bg_color = Color(0.439049, 0.439049, 0.439049, 0.619608)
@@ -163,4 +164,9 @@ texture = ExtResource("3_iacmt")
 expand_mode = 2
 stretch_mode = 6
 
+[node name="CsvImporter" type="Node" parent="."]
+script = ExtResource("6_6ev3c")
+
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_choice_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_choice_2_pressed"]
 [connection signal="gui_input" from="HBoxContainer/Panel/MarginContainer" to="." method="_on_click"]
