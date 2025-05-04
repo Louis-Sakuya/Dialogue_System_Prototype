@@ -1,0 +1,934 @@
+[gd_resource type="Resource" script_class="DialogueGroup" load_steps=92 format=3]
+
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="1_qtp86"]
+[ext_resource type="Texture2D" path="res://assets/BG/worlds1.jpg" id="2_ies01"]
+[ext_resource type="Texture2D" path="res://assets/avatars/leesin.png" id="3_tinf7"]
+[ext_resource type="Texture2D" path="res://assets/BG/black.png" id="4_t453f"]
+[ext_resource type="Texture2D" path="res://assets/BG/meetingroom.jpg" id="5_6ne2k"]
+[ext_resource type="Texture2D" path="res://assets/avatars/kenzhu.png" id="6_qfl6b"]
+[ext_resource type="Texture2D" path="res://assets/avatars/mid2.png" id="7_rcmui"]
+[ext_resource type="Texture2D" path="res://assets/avatars/adc2.png" id="8_nnoyl"]
+[ext_resource type="Texture2D" path="res://assets/avatars/top2.png" id="9_jtkop"]
+[ext_resource type="Texture2D" path="res://assets/avatars/jg2.png" id="10_v1t4o"]
+[ext_resource type="Texture2D" path="res://assets/BG/crowd2.jpg" id="11_u2ipg"]
+[ext_resource type="Texture2D" path="res://assets/BG/interview2.jpg" id="12_nlyt2"]
+[ext_resource type="Texture2D" path="res://assets/BG/backstage1.jpg" id="13_w40qc"]
+[ext_resource type="Texture2D" path="res://assets/avatars/sup2.png" id="14_sm128"]
+[ext_resource type="Texture2D" path="res://assets/BG/food1.jpg" id="15_snrgh"]
+[ext_resource type="Texture2D" path="res://assets/BG/macbook.jpg" id="16_1t3rd"]
+[ext_resource type="Texture2D" path="res://assets/avatars/ag.png" id="17_7jdvo"]
+[ext_resource type="Script" path="res://Scripts/DialogueGroup.gd" id="18_gu5ee"]
+
+[sub_resource type="Resource" id="Resource_ktdyh"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（你选下了——盲僧。）"
+show_on_left = false
+BG = ExtResource("2_ies01")
+image = ExtResource("3_tinf7")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_ng1xe"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（那是你最熟悉的英雄，也是最孤独的选择。每次选它，你知道自己将承担起整个局面的责任——这一次，你选择了相信自己）"
+show_on_left = false
+BG = ExtResource("2_ies01")
+image = ExtResource("3_tinf7")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_fkksx"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "...."
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_5ijlq"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "........."
+show_on_left = false
+BG = ExtResource("4_t453f")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_oglbx"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【BP前：训练室】"
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_adwir"]
+script = ExtResource("1_qtp86")
+character_name = "朱开"
+content = "「T1下路最近习惯打强推压线，决胜局我们走团队控制组——大天二开团，Jon走冰女，Wachao你拿扎克或者蔚。」"
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+image = ExtResource("6_qfl6b")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_i2o6r"]
+script = ExtResource("1_qtp86")
+character_name = "TwiceAhri"
+content = "「我赞成，要赢稳一点，别搞太多花的。」"
+avatar = ExtResource("7_rcmui")
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_qsaww"]
+script = ExtResource("1_qtp86")
+character_name = "Sakuya"
+content = "「（轻笑）你就想玩狐狸吧。」"
+avatar = ExtResource("8_nnoyl")
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_4ivqj"]
+script = ExtResource("1_qtp86")
+character_name = "TwiceAhri"
+content = "「我可没你那爱表演的性子。」"
+avatar = ExtResource("7_rcmui")
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_32lbk"]
+script = ExtResource("1_qtp86")
+character_name = "BlueChao"
+content = "「兄弟们我就一件事，打架我一定冲在前面，你们跟得上就行。」"
+avatar = ExtResource("9_jtkop")
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_4p2m5"]
+script = ExtResource("1_qtp86")
+character_name = "Wachao"
+content = "「（沉默片刻）..我想用盲僧。」"
+avatar = ExtResource("10_v1t4o")
+show_on_left = true
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_tvq58"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（全场一静）"
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_4kb01"]
+script = ExtResource("1_qtp86")
+character_name = "朱开"
+content = "「你确定？我们的计划里没有这个点。你最近训练赛这英雄胜率不高……」"
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+image = ExtResource("6_qfl6b")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_i4q44"]
+script = ExtResource("1_qtp86")
+character_name = "TwiceAhri"
+content = "「你是想玩还是想赢？」"
+avatar = ExtResource("7_rcmui")
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_b4tun"]
+script = ExtResource("1_qtp86")
+character_name = "Sakuya"
+content = "「不如我们再看一下Oner最近的打野数据？看看盲僧能不能针对他...」"
+avatar = ExtResource("8_nnoyl")
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_4v4gv"]
+script = ExtResource("1_qtp86")
+character_name = "Wachao"
+content = "「我们赢不了他们的标准打法。他们团队比我们更整，运营也更细。我们只能靠变量打穿。」"
+avatar = ExtResource("10_v1t4o")
+show_on_left = true
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_48ot6"]
+script = ExtResource("1_qtp86")
+character_name = "BlueChao"
+content = "「我没意见，我盯着打野帮你穿节奏。」"
+avatar = ExtResource("9_jtkop")
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_hucee"]
+script = ExtResource("1_qtp86")
+character_name = "朱开"
+content = "「……那你得背负全部后果。」"
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+image = ExtResource("6_qfl6b")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_bck3g"]
+script = ExtResource("1_qtp86")
+character_name = "Wachao"
+content = "「（坚毅的眼神）我背。」"
+show_on_left = true
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_scxyq"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "..."
+show_on_left = false
+BG = ExtResource("5_6ne2k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_fhsyg"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "....."
+show_on_left = false
+BG = ExtResource("4_t453f")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_3tvnj"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【回到决赛BP】"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_0rxv6"]
+script = ExtResource("1_qtp86")
+character_name = "Sakuya"
+content = "「你真玩盲僧啊？」"
+avatar = ExtResource("8_nnoyl")
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_hb5ki"]
+script = ExtResource("1_qtp86")
+character_name = "Wachao"
+content = "「相信我，我知道怎么赢。」"
+avatar = ExtResource("10_v1t4o")
+show_on_left = true
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_c5w2s"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "...."
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_kgd34"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "........."
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_rdkrl"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【比赛开始】"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_d4ncy"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（开局Sakuya和大天二就在下路草丛被T1四人逮捕，无奈交出双招。）"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_2vekc"]
+script = ExtResource("1_qtp86")
+character_name = "Sakuya"
+content = "「草！被他们摸透了！」"
+avatar = ExtResource("8_nnoyl")
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_kn7o6"]
+script = ExtResource("1_qtp86")
+character_name = "TwiceAhri"
+content = "「稳住啊下路，我打Faker走不开中路的」"
+avatar = ExtResource("7_rcmui")
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_drhmm"]
+script = ExtResource("1_qtp86")
+character_name = "Sakuya"
+content = "「怎么稳啊，他们要越了！首无救我！」"
+avatar = ExtResource("8_nnoyl")
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_aslrt"]
+script = ExtResource("1_qtp86")
+character_name = "Wachao"
+content = "「马上打完红就来。」"
+avatar = ExtResource("10_v1t4o")
+show_on_left = true
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_qhhed"]
+script = ExtResource("1_qtp86")
+character_name = "泽元"
+content = "「WNP这波下路要被越塔了啊，双招也没有应该是交代在这了。」"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_c4yuh"]
+script = ExtResource("1_qtp86")
+character_name = "记得"
+content = "「但是Wachao也在往这边赶，虽然下路被双杀了但是好在盲僧还是收掉了Oner和keria的人头。」"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_lrlkc"]
+script = ExtResource("1_qtp86")
+character_name = "泽元"
+content = "「WNP中路被Faker压制根本不能游走啊，这样的话巢虫可能拿不到了。」"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_yon0k"]
+script = ExtResource("1_qtp86")
+character_name = "记得"
+content = "「经过25分钟的发育，两边也是来到了厄塔汗的位置准备决一死战了！T1经济领先，但是Wachao这边的装备也没落下。」"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_s50v0"]
+script = ExtResource("1_qtp86")
+character_name = "泽元"
+content = "「这波只能看盲僧的了，哎！Wachao这个位置！摸眼R闪这个角度一下踹飞了三个人，这边WNP跟上伤害。一波直接击杀4人！」"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_n8hnq"]
+script = ExtResource("1_qtp86")
+character_name = "王多多"
+content = "「腿扫孤城半壁倾，十方骨血作飞花！这波完全是Wachao选手的个人秀啊！」"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_e8ei6"]
+script = ExtResource("1_qtp86")
+character_name = "记得"
+content = "「那这样的话，能一波吗！恭喜WNP成为英雄联盟S100全球总冠军！」"
+show_on_left = false
+BG = ExtResource("2_ies01")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_r3503"]
+script = ExtResource("1_qtp86")
+character_name = "观众"
+content = "「WACHAAAAO！！！！！」"
+show_on_left = false
+BG = ExtResource("11_u2ipg")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_m7mxw"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（随着比赛结束的信号灯亮起，全场沸腾。WNP战队终于摘得了世界冠军的桂冠！而在这其中，Wachao凭借他精湛的操作夺得了FMVP。）"
+show_on_left = false
+BG = ExtResource("11_u2ipg")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_cb5et"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "...."
+show_on_left = false
+BG = ExtResource("11_u2ipg")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_pnl4v"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "........"
+show_on_left = false
+BG = ExtResource("4_t453f")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_m124e"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【赛后采访】"
+show_on_left = false
+BG = ExtResource("12_nlyt2")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_vak7m"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（掌声，灯光，鲜花，奖杯，全场高呼——FMVP：WNP · Wachao。）"
+show_on_left = false
+BG = ExtResource("12_nlyt2")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_jbbde"]
+script = ExtResource("1_qtp86")
+character_name = "主持人"
+content = "「请问你有什么想对粉丝和你的队友说的吗？」"
+show_on_left = false
+BG = ExtResource("12_nlyt2")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_l6yja"]
+script = ExtResource("1_qtp86")
+character_name = "Wachao"
+content = "「谢谢大家……我就是我，我就是CHAO！」"
+avatar = ExtResource("10_v1t4o")
+show_on_left = true
+BG = ExtResource("12_nlyt2")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_foo4p"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "...."
+show_on_left = false
+BG = ExtResource("12_nlyt2")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 0
+isEND = false
+
+[sub_resource type="Resource" id="Resource_24l3w"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "........"
+show_on_left = false
+BG = ExtResource("4_t453f")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 0
+isEND = false
+
+[sub_resource type="Resource" id="Resource_7xvde"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【后台】"
+show_on_left = false
+BG = ExtResource("13_w40qc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_p5q8q"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（获奖采访、新闻标题、网络热搜都在刷「Wachao力挽狂澜」）"
+show_on_left = false
+BG = ExtResource("13_w40qc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_ygkgy"]
+script = ExtResource("1_qtp86")
+character_name = "BlueChao"
+content = "「我上路压了Zeus一整把，到最后网友说我评分是3.0！」"
+avatar = ExtResource("9_jtkop")
+show_on_left = false
+BG = ExtResource("13_w40qc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_8mpfx"]
+script = ExtResource("1_qtp86")
+character_name = "Sakuya"
+content = "「下路那一波被越，早一点来我至于被大蛋老师打爆吗！」"
+avatar = ExtResource("8_nnoyl")
+show_on_left = false
+BG = ExtResource("13_w40qc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_7qls7"]
+script = ExtResource("1_qtp86")
+character_name = "TwiceAhri"
+content = "「你们看这个标题“Wachao1打5赢下T1”，我们真就是背景板呗。」"
+avatar = ExtResource("7_rcmui")
+show_on_left = false
+BG = ExtResource("13_w40qc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_o3i3h"]
+script = ExtResource("1_qtp86")
+character_name = "BigSky2"
+content = "「我在虎扑被人喷没我早赢了，前几把难道我没出力吗？」"
+avatar = ExtResource("14_sm128")
+show_on_left = false
+BG = ExtResource("13_w40qc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_iubjl"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "...."
+show_on_left = false
+BG = ExtResource("13_w40qc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_ak6k5"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "........"
+show_on_left = false
+BG = ExtResource("4_t453f")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_ym4rg"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【庆功宴上】"
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_80ipx"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（粉丝送来的巨幅海报：画面是Wachao挥拳怒吼的夺冠瞬间，其余四人模糊在背景）"
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_l6cq6"]
+script = ExtResource("1_qtp86")
+character_name = "BlueChao"
+content = "「啧，首无，你现在是主角了啊，我们几个就是NPC咯？」"
+avatar = ExtResource("9_jtkop")
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_6wa3r"]
+script = ExtResource("1_qtp86")
+character_name = "Sakuya"
+content = "「一脚不光踹飞了T1，还把兄弟李宁都踹开线了。」"
+avatar = ExtResource("8_nnoyl")
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_6mwak"]
+script = ExtResource("1_qtp86")
+character_name = "TwiceAhri"
+content = "「以后也不用复盘了，反正你一拖五就能赢。」"
+avatar = ExtResource("7_rcmui")
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_1n38t"]
+script = ExtResource("1_qtp86")
+character_name = "BigSky2"
+content = "「先点菜吧。」"
+avatar = ExtResource("14_sm128")
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_eexh1"]
+script = ExtResource("1_qtp86")
+character_name = "Wachao"
+content = "「……我也没说你们不重要。」"
+avatar = ExtResource("10_v1t4o")
+show_on_left = true
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_hotbp"]
+script = ExtResource("1_qtp86")
+character_name = "TwiceAhri"
+content = "「没说，但你的眼神早就告诉我们了。（转身离开）」"
+avatar = ExtResource("7_rcmui")
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_xry41"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（空气凝固，弟弟脸色难看地低头，Sakuya不再说话）"
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_jkgm6"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "..."
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_cy6uk"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "........"
+show_on_left = false
+BG = ExtResource("4_t453f")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_e4nyh"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【数日后 】"
+show_on_left = false
+BG = ExtResource("16_1t3rd")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_3suyl"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "（TwiceAhri宣布退役，Sakuya加入AG超玩会，弟弟和大天二账号同时改名：GoodGame）"
+show_on_left = false
+BG = ExtResource("16_1t3rd")
+image = ExtResource("17_7jdvo")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_0xep4"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【微博热搜】"
+show_on_left = false
+BG = ExtResource("16_1t3rd")
+image = ExtResource("17_7jdvo")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_2xfp3"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "「Wachao一人一手盲僧终结T1统治，获FMVP！」, 「WNP战队疑似解散」, 「WNP队内不和」"
+show_on_left = false
+BG = ExtResource("16_1t3rd")
+image = ExtResource("17_7jdvo")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_ffnfq"]
+script = ExtResource("1_qtp86")
+character_name = ""
+content = "【结局3： 先点菜吧】"
+show_on_left = false
+BG = ExtResource("15_snrgh")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = true
+
+[resource]
+script = ExtResource("18_gu5ee")
+dialogue_list = Array[ExtResource("1_qtp86")]([SubResource("Resource_ktdyh"), SubResource("Resource_ng1xe"), SubResource("Resource_fkksx"), SubResource("Resource_5ijlq"), SubResource("Resource_oglbx"), SubResource("Resource_adwir"), SubResource("Resource_i2o6r"), SubResource("Resource_qsaww"), SubResource("Resource_4ivqj"), SubResource("Resource_32lbk"), SubResource("Resource_4p2m5"), SubResource("Resource_tvq58"), SubResource("Resource_4kb01"), SubResource("Resource_i4q44"), SubResource("Resource_b4tun"), SubResource("Resource_4v4gv"), SubResource("Resource_48ot6"), SubResource("Resource_hucee"), SubResource("Resource_bck3g"), SubResource("Resource_scxyq"), SubResource("Resource_fhsyg"), SubResource("Resource_3tvnj"), SubResource("Resource_0rxv6"), SubResource("Resource_hb5ki"), SubResource("Resource_c5w2s"), SubResource("Resource_kgd34"), SubResource("Resource_rdkrl"), SubResource("Resource_d4ncy"), SubResource("Resource_2vekc"), SubResource("Resource_kn7o6"), SubResource("Resource_drhmm"), SubResource("Resource_aslrt"), SubResource("Resource_qhhed"), SubResource("Resource_c4yuh"), SubResource("Resource_lrlkc"), SubResource("Resource_yon0k"), SubResource("Resource_s50v0"), SubResource("Resource_n8hnq"), SubResource("Resource_e8ei6"), SubResource("Resource_r3503"), SubResource("Resource_m7mxw"), SubResource("Resource_cb5et"), SubResource("Resource_pnl4v"), SubResource("Resource_m124e"), SubResource("Resource_vak7m"), SubResource("Resource_jbbde"), SubResource("Resource_l6yja"), SubResource("Resource_foo4p"), SubResource("Resource_24l3w"), SubResource("Resource_7xvde"), SubResource("Resource_p5q8q"), SubResource("Resource_ygkgy"), SubResource("Resource_8mpfx"), SubResource("Resource_7qls7"), SubResource("Resource_o3i3h"), SubResource("Resource_iubjl"), SubResource("Resource_ak6k5"), SubResource("Resource_ym4rg"), SubResource("Resource_80ipx"), SubResource("Resource_l6cq6"), SubResource("Resource_6wa3r"), SubResource("Resource_6mwak"), SubResource("Resource_1n38t"), SubResource("Resource_eexh1"), SubResource("Resource_hotbp"), SubResource("Resource_xry41"), SubResource("Resource_jkgm6"), SubResource("Resource_cy6uk"), SubResource("Resource_e4nyh"), SubResource("Resource_3suyl"), SubResource("Resource_0xep4"), SubResource("Resource_2xfp3"), SubResource("Resource_ffnfq")])

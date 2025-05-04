@@ -1,0 +1,234 @@
+[gd_resource type="Resource" script_class="DialogueGroup" load_steps=33 format=3]
+
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="1_oe6gu"]
+[ext_resource type="Texture2D" path="res://assets/BG/worlds1.jpg" id="2_yv3kr"]
+[ext_resource type="Texture2D" path="res://assets/BG/interview2.jpg" id="3_lrbly"]
+[ext_resource type="Texture2D" path="res://assets/avatars/jg2.png" id="4_l176o"]
+[ext_resource type="Texture2D" path="res://assets/BG/backstage1.jpg" id="5_use72"]
+[ext_resource type="Texture2D" path="res://assets/avatars/adc2.png" id="6_k1hue"]
+[ext_resource type="Texture2D" path="res://assets/avatars/adc1.png" id="7_vmtlc"]
+[ext_resource type="Texture2D" path="res://assets/avatars/mid2.png" id="8_tt8b1"]
+[ext_resource type="Texture2D" path="res://assets/avatars/mid1.png" id="9_tvvn5"]
+[ext_resource type="Texture2D" path="res://assets/avatars/sup2.png" id="10_kmhrt"]
+[ext_resource type="Texture2D" path="res://assets/avatars/sup1.png" id="11_idmys"]
+[ext_resource type="Texture2D" path="res://assets/avatars/top2.png" id="12_lomun"]
+[ext_resource type="Texture2D" path="res://assets/avatars/top1.png" id="13_b3vhn"]
+[ext_resource type="Texture2D" path="res://assets/BG/champion.jpg" id="14_2tw2r"]
+[ext_resource type="Script" path="res://Scripts/DialogueGroup.gd" id="15_tkovw"]
+
+[sub_resource type="Resource" id="Resource_vme4c"]
+script = ExtResource("1_oe6gu")
+character_name = ""
+content = "（你操纵酒桶闪R瞬间击退加里奥，中单失去进场机会，WNP五人一拥而上）"
+show_on_left = false
+BG = ExtResource("2_yv3kr")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_e6cpn"]
+script = ExtResource("1_oe6gu")
+character_name = "泽元"
+content = "「Wachao这一波把T1直接炸散了！卡莎R进场秒后排的同时狐狸也R进去E到了Oner的佛耶戈！」"
+show_on_left = false
+BG = ExtResource("2_yv3kr")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_qfvy4"]
+script = ExtResource("1_oe6gu")
+character_name = "记得"
+content = "「T1直接被打蒙了啊，这个后排消失的太快了，只剩一个加里奥虽然伤害很高但是也顶不住5个人攻击。」"
+show_on_left = false
+BG = ExtResource("2_yv3kr")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_bhco7"]
+script = ExtResource("1_oe6gu")
+character_name = "泽元"
+content = "「WNP直接一波团灭！兵线也很好，那么感觉要一波结束了！」"
+show_on_left = false
+BG = ExtResource("2_yv3kr")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_2b6ba"]
+script = ExtResource("1_oe6gu")
+character_name = "记得"
+content = "「恭喜WNP获得S100英雄联盟全球总冠军！」"
+show_on_left = false
+BG = ExtResource("2_yv3kr")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_yj1ju"]
+script = ExtResource("1_oe6gu")
+character_name = "泽元"
+content = "「他们做到了！他们做到了！！来自LPL的黑马——WNP，2025全球总冠军！！」"
+show_on_left = false
+BG = ExtResource("2_yv3kr")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_pen13"]
+script = ExtResource("1_oe6gu")
+character_name = "王多多"
+content = "「百战裂甲终越堑，一剑霜寒万壑清！WNP牛逼！」"
+show_on_left = false
+BG = ExtResource("2_yv3kr")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 11
+isEND = false
+
+[sub_resource type="Resource" id="Resource_twbtx"]
+script = ExtResource("1_oe6gu")
+character_name = ""
+content = "【赛后采访】"
+show_on_left = false
+BG = ExtResource("3_lrbly")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_ohua0"]
+script = ExtResource("1_oe6gu")
+character_name = "希然"
+content = "「本场FMVP给到了Wachao选手！首先恭喜你！我想问你最后一手的酒桶是临时起意还是蓄谋已久的战术呢？」"
+show_on_left = false
+BG = ExtResource("3_lrbly")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_v742c"]
+script = ExtResource("1_oe6gu")
+character_name = "Wachao"
+content = "「都有吧，酒桶本来也是我的招牌英雄，不过这一把拿出来也是教练组的意思。」"
+avatar = ExtResource("4_l176o")
+show_on_left = true
+BG = ExtResource("3_lrbly")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_3wfih"]
+script = ExtResource("1_oe6gu")
+character_name = ""
+content = "【后台】"
+show_on_left = false
+BG = ExtResource("5_use72")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_081ky"]
+script = ExtResource("1_oe6gu")
+character_name = "Sakuya"
+content = "「（笑）快来看首无，开始装B了」"
+avatar = ExtResource("6_k1hue")
+show_on_left = false
+BG = ExtResource("5_use72")
+image = ExtResource("7_vmtlc")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_rxwyg"]
+script = ExtResource("1_oe6gu")
+character_name = "TwiceAhri"
+content = "「让他装吧，最后一波确实开的好啊。」"
+avatar = ExtResource("8_tt8b1")
+show_on_left = false
+BG = ExtResource("5_use72")
+image = ExtResource("9_tvvn5")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_6mnr8"]
+script = ExtResource("1_oe6gu")
+character_name = "BigSky2"
+content = "「确实，我都感觉要输了。」"
+avatar = ExtResource("10_kmhrt")
+show_on_left = false
+BG = ExtResource("5_use72")
+image = ExtResource("11_idmys")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_mlpfj"]
+script = ExtResource("1_oe6gu")
+character_name = "BlueChao"
+content = "「我宣布Zeus现在是Chao一儿！」"
+avatar = ExtResource("12_lomun")
+show_on_left = false
+BG = ExtResource("5_use72")
+image = ExtResource("13_b3vhn")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_gslwl"]
+script = ExtResource("1_oe6gu")
+character_name = ""
+content = "（灯光下，他坦然站上聚光灯下的舞台；幕后一隅，他们低声调侃、相视而笑。无论身处何地，他们都明白——这场胜利，属于彼此。）"
+show_on_left = false
+BG = ExtResource("14_2tw2r")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = false
+
+[sub_resource type="Resource" id="Resource_3a7mf"]
+script = ExtResource("1_oe6gu")
+character_name = ""
+content = "【结局5： 现在是幻想时间】"
+show_on_left = false
+BG = ExtResource("14_2tw2r")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 13
+isEND = true
+
+[resource]
+script = ExtResource("15_tkovw")
+dialogue_list = Array[ExtResource("1_oe6gu")]([SubResource("Resource_vme4c"), SubResource("Resource_e6cpn"), SubResource("Resource_qfvy4"), SubResource("Resource_bhco7"), SubResource("Resource_2b6ba"), SubResource("Resource_yj1ju"), SubResource("Resource_pen13"), SubResource("Resource_twbtx"), SubResource("Resource_ohua0"), SubResource("Resource_v742c"), SubResource("Resource_3wfih"), SubResource("Resource_081ky"), SubResource("Resource_rxwyg"), SubResource("Resource_6mnr8"), SubResource("Resource_mlpfj"), SubResource("Resource_gslwl"), SubResource("Resource_3a7mf")])

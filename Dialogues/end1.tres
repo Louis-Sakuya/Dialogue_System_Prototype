@@ -1,0 +1,190 @@
+[gd_resource type="Resource" script_class="DialogueGroup" load_steps=25 format=3]
+
+[ext_resource type="Script" path="res://Scripts/dialogue.gd" id="1_q14fq"]
+[ext_resource type="Texture2D" path="res://assets/BG/backstage1.jpg" id="2_a8b3t"]
+[ext_resource type="Texture2D" path="res://assets/avatars/jg2.png" id="3_c23h5"]
+[ext_resource type="Texture2D" path="res://assets/avatars/adc2.png" id="4_787yg"]
+[ext_resource type="Texture2D" path="res://assets/avatars/mid2.png" id="5_8n8h7"]
+[ext_resource type="Texture2D" path="res://assets/avatars/top2.png" id="6_kyl6k"]
+[ext_resource type="Texture2D" path="res://assets/BG/black.png" id="7_e8e1k"]
+[ext_resource type="Texture2D" path="res://assets/BG/worlds2.jpg" id="8_rw0fl"]
+[ext_resource type="Texture2D" path="res://assets/avatars/furu.jpg" id="9_1udy7"]
+[ext_resource type="Script" path="res://Scripts/DialogueGroup.gd" id="10_2n4gk"]
+
+[sub_resource type="Resource" id="Resource_bufi6"]
+script = ExtResource("1_q14fq")
+character_name = "Wachao"
+content = "「对面确实没什么威胁。别紧张，打得开心就好。」"
+avatar = ExtResource("3_c23h5")
+show_on_left = true
+BG = ExtResource("2_a8b3t")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_fotjy"]
+script = ExtResource("1_q14fq")
+character_name = "Sakuya"
+content = "「那我玩老鼠了，我老想要老鼠的冠军皮肤了」"
+avatar = ExtResource("4_787yg")
+show_on_left = false
+BG = ExtResource("2_a8b3t")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_vbko7"]
+script = ExtResource("1_q14fq")
+character_name = "TwiceAhri"
+content = "「Jeffrey我要玩上单奎因，折磨对面上单」"
+avatar = ExtResource("5_8n8h7")
+show_on_left = false
+BG = ExtResource("2_a8b3t")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_diy5s"]
+script = ExtResource("1_q14fq")
+character_name = "BlueChao"
+content = "「ok，我来一把中路盖伦」"
+avatar = ExtResource("6_kyl6k")
+show_on_left = false
+BG = ExtResource("2_a8b3t")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_8wshu"]
+script = ExtResource("1_q14fq")
+character_name = ""
+content = "..."
+show_on_left = false
+BG = ExtResource("2_a8b3t")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_vsahj"]
+script = ExtResource("1_q14fq")
+character_name = ""
+content = "........"
+show_on_left = false
+BG = ExtResource("7_e8e1k")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_ymbvp"]
+script = ExtResource("1_q14fq")
+character_name = ""
+content = "（比赛开始。选手席上，WNP五人神情轻松，连大天二都在笑着调试键盘）"
+show_on_left = false
+BG = ExtResource("8_rw0fl")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_5esd2"]
+script = ExtResource("1_q14fq")
+character_name = ""
+content = "（第一局，前期节奏被对方下野频繁入侵打乱，Wachao失误被反两组野）"
+show_on_left = false
+BG = ExtResource("8_rw0fl")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_5ksee"]
+script = ExtResource("1_q14fq")
+character_name = ""
+content = "（TwiceAhri因操作不当多次被越塔击杀，对方上单打出MVP级别表现）"
+show_on_left = false
+BG = ExtResource("8_rw0fl")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_3i8hf"]
+script = ExtResource("1_q14fq")
+character_name = "泽元"
+content = "「WNP的换线没有打出效果啊！越南队打得太凶了！WNP不会要输了吧」"
+show_on_left = false
+BG = ExtResource("8_rw0fl")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_sdarv"]
+script = ExtResource("1_q14fq")
+character_name = "记得"
+content = "「谁都没有想到，被我们给予厚望的四号种子WNP就这样倒在了8强，让我们恭喜GAM！」"
+show_on_left = false
+BG = ExtResource("8_rw0fl")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_e0edp"]
+script = ExtResource("1_q14fq")
+character_name = ""
+content = "（BO5最终以1:3爆冷失利）"
+show_on_left = false
+BG = ExtResource("8_rw0fl")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_rmgn7"]
+script = ExtResource("1_q14fq")
+character_name = "Wachao"
+content = "「不……不该是这样的……」"
+avatar = ExtResource("3_c23h5")
+show_on_left = true
+BG = ExtResource("8_rw0fl")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = false
+
+[sub_resource type="Resource" id="Resource_1p3gc"]
+script = ExtResource("1_q14fq")
+character_name = ""
+content = "【结局1：越南腐乳 (你真选啊)】"
+show_on_left = false
+BG = ExtResource("8_rw0fl")
+image = ExtResource("9_1udy7")
+is_choice = false
+choice1 = ""
+choice2 = ""
+bgm = 4
+isEND = true
+
+[resource]
+script = ExtResource("10_2n4gk")
+dialogue_list = Array[ExtResource("1_q14fq")]([SubResource("Resource_bufi6"), SubResource("Resource_fotjy"), SubResource("Resource_vbko7"), SubResource("Resource_diy5s"), SubResource("Resource_8wshu"), SubResource("Resource_vsahj"), SubResource("Resource_ymbvp"), SubResource("Resource_5esd2"), SubResource("Resource_5ksee"), SubResource("Resource_3i8hf"), SubResource("Resource_sdarv"), SubResource("Resource_e0edp"), SubResource("Resource_rmgn7"), SubResource("Resource_1p3gc")])

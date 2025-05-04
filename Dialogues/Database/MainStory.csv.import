@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cwt0ylqsse70u"
+
+[deps]
+
+files=["res://Dialogues/Database/MainStory.dialogue.translation", "res://Dialogues/Database/MainStory.character.translation", "res://Dialogues/Database/MainStory.content.translation", "res://Dialogues/Database/MainStory.avatar.translation", "res://Dialogues/Database/MainStory.show.translation", "res://Dialogues/Database/MainStory.bg.translation", "res://Dialogues/Database/MainStory.image.translation", "res://Dialogues/Database/MainStory.is.translation", "res://Dialogues/Database/MainStory.choice1.translation", "res://Dialogues/Database/MainStory.result1.translation", "res://Dialogues/Database/MainStory.choice2.translation", "res://Dialogues/Database/MainStory.result2.translation", "res://Dialogues/Database/MainStory.bgm.translation", "res://Dialogues/Database/MainStory.isEND.translation"]
+
+source_file="res://Dialogues/Database/MainStory.csv"
+dest_files=["res://Dialogues/Database/MainStory.dialogue.translation", "res://Dialogues/Database/MainStory.character.translation", "res://Dialogues/Database/MainStory.content.translation", "res://Dialogues/Database/MainStory.avatar.translation", "res://Dialogues/Database/MainStory.show.translation", "res://Dialogues/Database/MainStory.bg.translation", "res://Dialogues/Database/MainStory.image.translation", "res://Dialogues/Database/MainStory.is.translation", "res://Dialogues/Database/MainStory.choice1.translation", "res://Dialogues/Database/MainStory.result1.translation", "res://Dialogues/Database/MainStory.choice2.translation", "res://Dialogues/Database/MainStory.result2.translation", "res://Dialogues/Database/MainStory.bgm.translation", "res://Dialogues/Database/MainStory.isEND.translation"]
+
+[params]
+
+compress=true
+delimiter=0
