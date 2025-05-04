@@ -11,6 +11,11 @@ config_version=5
 [application]
 
 config/name="Dialog System Prototype"
-run/main_scene="uid://b48ayjcm230p5"
+run/main_scene="uid://crt3mv67kffn3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GlobalGameData="*res://Scripts/global_game_data.gd"
+AudioManager="*res://Scripts/audio_manager.gd"

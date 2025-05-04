@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://b48ayjcm230p5"]
 
 [ext_resource type="Script" uid="uid://bbfd0m2421kcu" path="res://Scenes/dialog_manager.gd" id="1_jv6wh"]
-[ext_resource type="Resource" uid="uid://crp4nd7n7ncxa" path="res://Dialogues/intro.tres" id="2_iacmt"]
+[ext_resource type="Resource" uid="uid://bv7fi6m7u0gw7" path="res://Dialogues/intro.tres" id="2_iacmt"]
 [ext_resource type="Texture2D" uid="uid://6qv4b4vucfjy" path="res://assets/BG/champion.jpg" id="2_x6ack"]
 [ext_resource type="Texture2D" uid="uid://e8akxuo3hiyp" path="res://assets/avatars/jgy2.png" id="4_6ev3c"]
 [ext_resource type="Texture2D" uid="uid://bhvu47ppkfmdr" path="res://assets/avatars/ady2.png" id="5_maf8m"]
@@ -66,7 +66,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="Control" type="Control" node_paths=PackedStringArray("character_name_label", "text_box", "left_avatar", "right_avatar", "bg", "image", "choice_box", "choice1", "choice2", "save_panel", "load_panel", "save_slots_container", "load_slots_container", "save_back_button", "load_back_button", "main_menu_button", "settings_panel", "volume_slider", "volume_label", "settings_back_button")]
+[node name="Control" type="Control" node_paths=PackedStringArray("character_name_label", "text_box", "left_avatar", "right_avatar", "bg", "image", "choice_box", "choice1", "choice2", "save_load_button", "save_panel", "load_panel", "save_slots_container", "load_slots_container", "save_back_button", "load_back_button", "main_menu_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,6 +83,7 @@ image = NodePath("Image")
 choice_box = NodePath("VBoxContainer")
 choice1 = NodePath("VBoxContainer/Button")
 choice2 = NodePath("VBoxContainer/Button2")
+save_load_button = NodePath("MenuButtons/SaveButton")
 save_panel = NodePath("SavePanel")
 load_panel = NodePath("LoadPanel")
 save_slots_container = NodePath("SavePanel/MarginContainer/VBoxContainer/ScrollContainer/SaveSlotsContainer")
@@ -90,10 +91,6 @@ load_slots_container = NodePath("LoadPanel/MarginContainer/VBoxContainer/ScrollC
 save_back_button = NodePath("SavePanel/MarginContainer/VBoxContainer/HBoxContainer/BackButton")
 load_back_button = NodePath("LoadPanel/MarginContainer/VBoxContainer/BackButton")
 main_menu_button = NodePath("MenuButtons/MainMenuButton")
-settings_panel = NodePath("SettingsPanel")
-volume_slider = NodePath("SettingsPanel/MarginContainer/VBoxContainer/VolumeSlider")
-volume_label = NodePath("SettingsPanel/MarginContainer/VBoxContainer/VolumeLabel")
-settings_back_button = NodePath("SettingsPanel/MarginContainer/VBoxContainer/BackButton")
 current_dialogue = ExtResource("2_iacmt")
 
 [node name="BG" type="TextureRect" parent="."]
@@ -243,15 +240,6 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
 text = "读取"
 
-[node name="SettingButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(120, 40)
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
-text = "设置"
-
 [node name="MainMenuButton" type="Button" parent="MenuButtons"]
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2
@@ -262,7 +250,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
 text = "主菜单"
 
 [node name="SavePanel" type="Panel" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -323,6 +310,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
 text = "返回"
 
+[node name="LoadButton" type="Button" parent="SavePanel/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
+text = "读取游戏"
+
 [node name="LoadPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 1
@@ -380,77 +377,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
 text = "返回"
 
-[node name="SettingsPanel" type="Panel" parent="."]
-visible = false
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -200.0
-offset_right = 300.0
-offset_bottom = 200.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_efn4s")
-
-[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/MarginContainer"]
-layout_mode = 2
-theme_override_constants/separation = 20
-
-[node name="Title" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "设置"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="VolumeLabel" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "音量: 100%"
-horizontal_alignment = 1
-
-[node name="VolumeSlider" type="HSlider" parent="SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-min_value = 0.001
-max_value = 1.0
-step = 0.01
-value = 1.0
-
-[node name="HSeparator2" type="HSeparator" parent="SettingsPanel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="BackButton" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
-text = "返回"
-
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_choice_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_choice_2_pressed"]
 [connection signal="gui_input" from="HBoxContainer/Panel/MarginContainer" to="." method="_on_click"]
 [connection signal="pressed" from="MenuButtons/SaveButton" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="MenuButtons/LoadButton" to="." method="_on_load_pressed"]
-[connection signal="pressed" from="MenuButtons/SettingButton" to="." method="_on_setting_pressed"]
 [connection signal="pressed" from="MenuButtons/MainMenuButton" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="SavePanel/MarginContainer/VBoxContainer/HBoxContainer/BackButton" to="." method="_on_save_back_pressed"]
+[connection signal="pressed" from="SavePanel/MarginContainer/VBoxContainer/HBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]
 [connection signal="pressed" from="LoadPanel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_load_back_pressed"]

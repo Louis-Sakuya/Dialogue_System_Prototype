@@ -79,12 +79,9 @@ func import_csv(csv_path: String) -> Dictionary:
 		dialogue.choice1 = row_data.get("choice1", "")
 		dialogue.choice2 = row_data.get("choice2", "")
 		
-		var soundeffect_path = row_data.get("soundeffect_path", "")
-		if soundeffect_path != "":
-			if ResourceLoader.exists(soundeffect_path):
-				dialogue.soundeffect = load(soundeffect_path)
-			else:
-				printerr("无法加载音效资源：", soundeffect_path)
+		var bgm = row_data.get("bgm", "")
+		dialogue.bgm = int(bgm) if bgm.is_valid_int() else 0
+		dialogue.isEND = row_data.get("isEND", "false").to_lower() == "true"
 		
 		# 存储对话、对话ID和行数据
 		dialogues_by_group[group_id][dialogue_id] = dialogue

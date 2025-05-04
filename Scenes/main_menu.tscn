@@ -1,0 +1,363 @@
+[gd_scene load_steps=7 format=3 uid="uid://crt3mv67kffn3"]
+
+[ext_resource type="Script" uid="uid://5p5qx3miyef6" path="res://Scenes/main_menu.gd" id="1_48xlc"]
+[ext_resource type="Texture2D" uid="uid://jadfqbfh7gc7" path="res://assets/BG/wnp.jpg" id="2_48xlc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_64jkm"]
+bg_color = Color(0.439049, 0.439049, 0.439049, 0.619608)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.519822, 0.850209, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3xvs"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.519822, 0.850209, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_efn4s"]
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 0.823529)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.145086, 0.573973, 0.904738, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lc4rn"]
+bg_color = Color(0.145098, 0.145098, 0.145098, 0.866667)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.145086, 0.573973, 0.904738, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenu" type="Control" node_paths=PackedStringArray("new_game_button", "load_game_button", "settings_button", "language_button", "quit_button", "load_game_panel", "save_slots_container", "back_button", "settings_panel", "settings_back_button", "language_panel", "language_back_button", "volume_slider", "volume_label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_48xlc")
+new_game_button = NodePath("VBoxContainer/NewGameButton")
+load_game_button = NodePath("VBoxContainer/LoadGameButton")
+settings_button = NodePath("VBoxContainer/SettingsButton")
+language_button = NodePath("VBoxContainer/LanguageButton")
+quit_button = NodePath("VBoxContainer/QuitButton")
+load_game_panel = NodePath("LoadPanel")
+save_slots_container = NodePath("LoadPanel/MarginContainer/VBoxContainer/ScrollContainer/SaveSlotsContainer")
+back_button = NodePath("LoadPanel/MarginContainer/VBoxContainer/BackButton")
+settings_panel = NodePath("SettingsPanel")
+settings_back_button = NodePath("SettingsPanel/MarginContainer/VBoxContainer/BackButton")
+language_panel = NodePath("LanguagePanel")
+language_back_button = NodePath("LanguagePanel/MarginContainer/VBoxContainer/BackButton")
+volume_slider = NodePath("SettingsPanel/MarginContainer/VBoxContainer/VolumeSlider")
+volume_label = NodePath("SettingsPanel/MarginContainer/VBoxContainer/VolumeLabel")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_48xlc")
+expand_mode = 2
+
+[node name="Title" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_top = 63.0
+offset_right = 324.0
+offset_bottom = 151.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.785916, 0.5416, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 19
+theme_override_font_sizes/font_size = 64
+text = "重生之是WNP最强打野"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -116.0
+offset_right = 152.0
+offset_bottom = 284.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "新游戏"
+
+[node name="LoadGameButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "读取游戏"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "设置"
+
+[node name="LanguageButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "语言"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(300, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "退出"
+
+[node name="LoadPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_efn4s")
+
+[node name="MarginContainer" type="MarginContainer" parent="LoadPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LoadPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="LoadPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "读取游戏"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LoadPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SaveSlotsContainer" type="VBoxContainer" parent="LoadPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 10
+
+[node name="BackButton" type="Button" parent="LoadPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
+text = "返回"
+
+[node name="SettingsPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_efn4s")
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "设置"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "音量: 100%"
+horizontal_alignment = 1
+
+[node name="VolumeSlider" type="HSlider" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+min_value = 0.001
+max_value = 1.0
+step = 0.01
+value = 1.0
+
+[node name="HSeparator2" type="HSeparator" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="SettingsPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
+text = "返回"
+
+[node name="LanguagePanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -250.0
+offset_right = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LanguagePanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LanguagePanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="LanguagePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "选择语言"
+horizontal_alignment = 1
+
+[node name="ChineseButton" type="Button" parent="LanguagePanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "中文"
+
+[node name="EnglishButton" type="Button" parent="LanguagePanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "English"
+
+[node name="Label" type="Label" parent="LanguagePanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "语言选择功能将在后续版本实现"
+horizontal_alignment = 1
+
+[node name="BackButton" type="Button" parent="LanguagePanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_64jkm")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
+text = "返回"
+
+[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/LoadGameButton" to="." method="_on_load_game_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/LanguageButton" to="." method="_on_language_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="LoadPanel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="SettingsPanel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_settings_back_pressed"]
+[connection signal="pressed" from="LanguagePanel/MarginContainer/VBoxContainer/BackButton" to="." method="_on_language_back_pressed"]

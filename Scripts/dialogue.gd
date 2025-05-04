@@ -12,4 +12,5 @@ class_name Dialogue
 @export var result1: DialogueGroup
 @export var choice2: String
 @export var result2: DialogueGroup
-@export var soundeffect: AudioEffect
+@export var bgm: int
+@export var isEND: bool
