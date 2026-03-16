@@ -14,14 +14,6 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0.519822, 0.850209, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huasi"]
-bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.901961)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0.519822, 0.850209, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ev3c"]
 bg_color = Color(0.0745098, 0.0745098, 0.0745098, 0.823529)
 border_width_left = 5
@@ -66,7 +58,15 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="Control" type="Control" node_paths=PackedStringArray("character_name_label", "text_box", "left_avatar", "right_avatar", "bg", "image", "choice_box", "choice1", "choice2", "save_panel", "load_panel", "save_slots_container", "load_slots_container", "save_back_button", "load_back_button", "main_menu_button", "settings_panel", "volume_slider", "volume_label", "settings_back_button")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_huasi"]
+bg_color = Color(0.0901961, 0.0901961, 0.0901961, 0.901961)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0.519822, 0.850209, 1)
+
+[node name="Control" type="Control" node_paths=PackedStringArray("character_name_label", "text_box", "left_avatar", "right_avatar", "bg", "image", "choice_box", "save_panel", "load_panel", "save_slots_container", "load_slots_container", "save_back_button", "load_back_button", "main_menu_button", "settings_panel", "volume_slider", "volume_label", "settings_back_button", "log_panel", "log_container", "log_back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -80,9 +80,7 @@ left_avatar = NodePath("HBoxContainer/LeftAvatar")
 right_avatar = NodePath("HBoxContainer/RightAvatar")
 bg = NodePath("BG")
 image = NodePath("Image")
-choice_box = NodePath("VBoxContainer")
-choice1 = NodePath("VBoxContainer/Button")
-choice2 = NodePath("VBoxContainer/Button2")
+choice_box = NodePath("ChoiceBox")
 save_panel = NodePath("SavePanel")
 load_panel = NodePath("LoadPanel")
 save_slots_container = NodePath("SavePanel/MarginContainer/VBoxContainer/ScrollContainer/SaveSlotsContainer")
@@ -94,6 +92,9 @@ settings_panel = NodePath("SettingsPanel")
 volume_slider = NodePath("SettingsPanel/MarginContainer/VBoxContainer/VolumeSlider")
 volume_label = NodePath("SettingsPanel/MarginContainer/VBoxContainer/VolumeLabel")
 settings_back_button = NodePath("SettingsPanel/MarginContainer/VBoxContainer/BackButton")
+log_panel = NodePath("LogPanel")
+log_container = NodePath("LogPanel/MarginContainer/VBoxContainer/ScrollContainer/LogContainer")
+log_back_button = NodePath("LogPanel/MarginContainer/VBoxContainer/BackButton")
 current_dialogue = ExtResource("2_iacmt")
 
 [node name="BG" type="TextureRect" parent="."]
@@ -120,7 +121,8 @@ grow_vertical = 2
 expand_mode = 4
 stretch_mode = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ChoiceBox" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -133,26 +135,8 @@ offset_right = 213.0
 offset_bottom = 118.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 77
+theme_override_constants/separation = 20
 alignment = 1
-
-[node name="Button" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/normal = SubResource("StyleBoxFlat_huasi")
-text = "你妈死了"
-
-[node name="Button2" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 50)
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
-theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
-theme_override_styles/normal = SubResource("StyleBoxFlat_huasi")
-text = "你妈死了"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -217,16 +201,25 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -281.0
+offset_left = -400.0
 offset_top = 19.0
 offset_right = -19.0
 offset_bottom = 59.0
 grow_horizontal = 0
-theme_override_constants/separation = 15
+theme_override_constants/separation = 10
 alignment = 2
 
+[node name="LogButton" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(90, 40)
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
+text = "回顾"
+
 [node name="SaveButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(120, 40)
+custom_minimum_size = Vector2(90, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
@@ -235,7 +228,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
 text = "保存"
 
 [node name="LoadButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(120, 40)
+custom_minimum_size = Vector2(90, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
@@ -244,7 +237,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
 text = "读取"
 
 [node name="SettingButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(120, 40)
+custom_minimum_size = Vector2(90, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
@@ -253,7 +246,7 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_u3xvs")
 text = "设置"
 
 [node name="MainMenuButton" type="Button" parent="MenuButtons"]
-custom_minimum_size = Vector2(120, 40)
+custom_minimum_size = Vector2(90, 40)
 layout_mode = 2
 theme_override_font_sizes/font_size = 16
 theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
@@ -445,9 +438,65 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
 theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
 text = "返回"
 
-[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_choice_1_pressed"]
-[connection signal="pressed" from="VBoxContainer/Button2" to="." method="_on_choice_2_pressed"]
+[node name="LogPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -280.0
+offset_right = 350.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_efn4s")
+
+[node name="MarginContainer" type="MarginContainer" parent="LogPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LogPanel/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="LogPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "对话记录"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="LogPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LogContainer" type="VBoxContainer" parent="LogPanel/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 6
+
+[node name="BackButton" type="Button" parent="LogPanel/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/hover = SubResource("StyleBoxFlat_iacmt")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_iacmt")
+theme_override_styles/normal = SubResource("StyleBoxFlat_lc4rn")
+text = "返回"
+
 [connection signal="gui_input" from="HBoxContainer/Panel/MarginContainer" to="." method="_on_click"]
+[connection signal="pressed" from="MenuButtons/LogButton" to="." method="_on_log_pressed"]
 [connection signal="pressed" from="MenuButtons/SaveButton" to="." method="_on_save_pressed"]
 [connection signal="pressed" from="MenuButtons/LoadButton" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="MenuButtons/SettingButton" to="." method="_on_setting_pressed"]

@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://chb02pw6y66qu"
+
+[deps]
+
+files=["res://Dialogues/Database/MainStory.dialogue.translation", "res://Dialogues/Database/MainStory.character.translation", "res://Dialogues/Database/MainStory.content.translation", "res://Dialogues/Database/MainStory.content.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.show.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.is.translation", "res://Dialogues/Database/MainStory.choices.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.isEND.translation", "res://Dialogues/Database/MainStory.affection.translation", "res://Dialogues/Database/MainStory.is.translation", "res://Dialogues/Database/MainStory.chapter.translation", "res://Dialogues/Database/MainStory.chapter.translation"]
+
+source_file="res://Dialogues/Database/MainStory.csv"
+dest_files=["res://Dialogues/Database/MainStory.dialogue.translation", "res://Dialogues/Database/MainStory.character.translation", "res://Dialogues/Database/MainStory.content.translation", "res://Dialogues/Database/MainStory.content.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.show.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.is.translation", "res://Dialogues/Database/MainStory.choices.translation", "res://Dialogues/Database/MainStory.en.translation", "res://Dialogues/Database/MainStory.isEND.translation", "res://Dialogues/Database/MainStory.affection.translation", "res://Dialogues/Database/MainStory.is.translation", "res://Dialogues/Database/MainStory.chapter.translation", "res://Dialogues/Database/MainStory.chapter.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true
