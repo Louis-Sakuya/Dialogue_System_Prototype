@@ -6,7 +6,7 @@ extends Control
 @export var left_avatar: TextureRect
 @export var right_avatar: TextureRect
 @export var bg: TextureRect
-@export var image: TextureRect
+@export var image_container: HBoxContainer
 @export var choice_box: VBoxContainer
 @export var save_panel: Panel
 @export var load_panel: Panel
@@ -32,8 +32,8 @@ var sprite_anim_tween: Tween
 var save_manager: GameSaveManager
 var is_end_dialogue := false
 var dialogue_history: Array[Dictionary] = []
-var _image_original_pos: Vector2
-var _image_original_scale: Vector2
+var _container_original_pos: Vector2
+var _container_original_scale: Vector2
 
 func _ready() -> void:
 	save_manager = GameSaveManager.new()
@@ -71,10 +71,10 @@ func _ready() -> void:
 			for item in data.dialogue_history:
 				dialogue_history.append(item)
 
-	# 记录立绘原始位置（用于动画归位）
-	if image:
-		_image_original_pos = image.position
-		_image_original_scale = image.scale
+	# 记录立绘容器原始位置（用于动画归位）
+	if image_container:
+		_container_original_pos = image_container.position
+		_container_original_scale = image_container.scale
 
 	display_next_dialogue()
 
@@ -96,8 +96,11 @@ func advance_dialogue_by_key() -> void:
 		if current_item.is_choice:
 			return
 
-	if dialogue_index > 0 and dialogue_index >= len(current_dialogue.dialogue_list) and is_end_dialogue:
-		_handle_game_end()
+	if dialogue_index > 0 and dialogue_index >= len(current_dialogue.dialogue_list):
+		if is_end_dialogue:
+			_handle_game_end()
+		else:
+			display_next_dialogue()
 	elif dialogue_index > 0 and dialogue_index <= len(current_dialogue.dialogue_list):
 		display_next_dialogue()
 
@@ -108,6 +111,9 @@ func _is_any_panel_visible() -> bool:
 
 func display_next_dialogue():
 	if dialogue_index >= len(current_dialogue.dialogue_list):
+		if not is_end_dialogue and current_dialogue.next_group:
+			set_dialogue_group(current_dialogue.next_group)
+			return
 		visible = false
 		return
 
@@ -139,12 +145,10 @@ func display_next_dialogue():
 			bg.texture = dialogue.BG
 
 		# 立绘 + 动画
-		image.texture = dialogue.image
-		if dialogue.image:
-			image.visible = true
+		_display_images(dialogue.images)
+		if dialogue.images.size() > 0:
 			_play_sprite_animation(dialogue.sprite_anim)
-		else:
-			image.visible = false
+		
 
 		# 选项
 		if !dialogue.is_choice:
@@ -160,6 +164,12 @@ func display_next_dialogue():
 			AudioManager.play_music(dialogue.bgm)
 		elif dialogue.bgm == 0:
 			AudioManager.fade_out_and_stop()
+
+		# SFX
+		if dialogue.sfx == "STOP":
+			AudioManager.stop_sfx()
+		elif dialogue.sfx != "":
+			AudioManager.play_sfx(dialogue.sfx)
 
 		# 好感值（非选项触发的固定变化）
 		if dialogue.affection_changes.size() > 0:
@@ -204,28 +214,74 @@ func _show_dynamic_choices(dialogue: Dialogue) -> void:
 		button.custom_minimum_size = Vector2(0, 50)
 		button.add_theme_font_size_override("font_size", 22)
 
-		# 获取本地化文本
+		var is_unlocked = AffectionManager.check_condition(choice.condition)
+
 		var display_text = choice.choice_text
 		if choice.localization_key != "":
 			var translated = LocalizationManager.get_text(choice.localization_key)
 			if translated != choice.localization_key:
 				display_text = translated
-		button.text = display_text
 
-		button.pressed.connect(_on_dynamic_choice_pressed.bind(choice))
+		if is_unlocked:
+			button.text = display_text
+			button.pressed.connect(_on_dynamic_choice_pressed.bind(choice, true))
+		elif choice.fail_group:
+			# 软锁定：可点击，但走失败分支
+			var reason = _get_lock_reason_text(choice)
+			button.text = display_text + "  [" + reason + "]"
+			button.add_theme_color_override("font_color", Color(0.8, 0.6, 0.3))
+			button.pressed.connect(_on_dynamic_choice_pressed.bind(choice, false))
+		else:
+			# 硬锁定：不可点击
+			var reason = _get_lock_reason_text(choice)
+			button.text = "[" + reason + "]"
+			button.disabled = true
+			button.add_theme_color_override("font_disabled_color", Color(0.5, 0.5, 0.5, 0.7))
+
 		choice_box.add_child(button)
 
-func _on_dynamic_choice_pressed(choice: DialogueChoice) -> void:
-	# 记录选择到 Log
+func _on_dynamic_choice_pressed(choice: DialogueChoice, is_success: bool) -> void:
 	_record_to_log("", choice.choice_text, true)
 
-	# 执行好感值变化
-	if choice.affection_changes.size() > 0:
-		AffectionManager.apply_affection_changes(choice.affection_changes)
+	if is_success:
+		if choice.affection_changes.size() > 0:
+			AffectionManager.apply_affection_changes(choice.affection_changes)
+		if choice.result_group:
+			set_dialogue_group(choice.result_group)
+	else:
+		if choice.fail_affection_changes.size() > 0:
+			AffectionManager.apply_affection_changes(choice.fail_affection_changes)
+		if choice.fail_group:
+			set_dialogue_group(choice.fail_group)
 
-	# 跳转到目标对话组
-	if choice.result_group:
-		set_dialogue_group(choice.result_group)
+func _get_lock_reason_text(choice: DialogueChoice) -> String:
+	var reason = choice.lock_reason
+	if choice.lock_reason_en != "":
+		var translated = LocalizationManager.get_text(choice.lock_reason_en)
+		if translated != choice.lock_reason_en:
+			reason = translated
+	if reason == "":
+		reason = "???"
+	return reason
+
+# ==================== 立绘显示系统 ====================
+
+func _display_images(textures: Array[Texture]) -> void:
+	for child in image_container.get_children():
+		child.queue_free()
+
+	if textures.size() == 0:
+		image_container.visible = false
+		return
+
+	image_container.visible = true
+	for tex in textures:
+		var rect = TextureRect.new()
+		rect.texture = tex
+		rect.expand_mode = TextureRect.EXPAND_FIT_HEIGHT_PROPORTIONAL
+		rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		rect.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		image_container.add_child(rect)
 
 # ==================== 立绘动画系统 ====================
 
@@ -233,53 +289,53 @@ func _play_sprite_animation(anim_name: String) -> void:
 	if sprite_anim_tween and sprite_anim_tween.is_running():
 		sprite_anim_tween.kill()
 
-	# 先重置到原始状态
-	image.position = _image_original_pos
-	image.scale = _image_original_scale
-	image.modulate.a = 1.0
+	image_container.position = _container_original_pos
+	image_container.scale = _container_original_scale
+	image_container.modulate.a = 1.0
 
 	if anim_name == "" or anim_name == "none":
 		return
 
 	sprite_anim_tween = create_tween()
+	var target = image_container
 
 	match anim_name:
 		"shake":
-			var orig_x = _image_original_pos.x
-			sprite_anim_tween.tween_property(image, "position:x", orig_x + 10, 0.05)
-			sprite_anim_tween.tween_property(image, "position:x", orig_x - 10, 0.05)
-			sprite_anim_tween.tween_property(image, "position:x", orig_x + 8, 0.05)
-			sprite_anim_tween.tween_property(image, "position:x", orig_x - 8, 0.05)
-			sprite_anim_tween.tween_property(image, "position:x", orig_x + 4, 0.05)
-			sprite_anim_tween.tween_property(image, "position:x", orig_x - 4, 0.05)
-			sprite_anim_tween.tween_property(image, "position:x", orig_x, 0.05)
+			var orig_x = _container_original_pos.x
+			sprite_anim_tween.tween_property(target, "position:x", orig_x + 10, 0.05)
+			sprite_anim_tween.tween_property(target, "position:x", orig_x - 10, 0.05)
+			sprite_anim_tween.tween_property(target, "position:x", orig_x + 8, 0.05)
+			sprite_anim_tween.tween_property(target, "position:x", orig_x - 8, 0.05)
+			sprite_anim_tween.tween_property(target, "position:x", orig_x + 4, 0.05)
+			sprite_anim_tween.tween_property(target, "position:x", orig_x - 4, 0.05)
+			sprite_anim_tween.tween_property(target, "position:x", orig_x, 0.05)
 
 		"bounce":
-			var orig_y = _image_original_pos.y
-			sprite_anim_tween.tween_property(image, "position:y", orig_y - 20, 0.15).set_ease(Tween.EASE_OUT)
-			sprite_anim_tween.tween_property(image, "position:y", orig_y, 0.15).set_ease(Tween.EASE_IN)
-			sprite_anim_tween.tween_property(image, "position:y", orig_y - 10, 0.1).set_ease(Tween.EASE_OUT)
-			sprite_anim_tween.tween_property(image, "position:y", orig_y, 0.1).set_ease(Tween.EASE_IN)
+			var orig_y = _container_original_pos.y
+			sprite_anim_tween.tween_property(target, "position:y", orig_y - 20, 0.15).set_ease(Tween.EASE_OUT)
+			sprite_anim_tween.tween_property(target, "position:y", orig_y, 0.15).set_ease(Tween.EASE_IN)
+			sprite_anim_tween.tween_property(target, "position:y", orig_y - 10, 0.1).set_ease(Tween.EASE_OUT)
+			sprite_anim_tween.tween_property(target, "position:y", orig_y, 0.1).set_ease(Tween.EASE_IN)
 
 		"fade_in":
-			image.modulate.a = 0.0
-			sprite_anim_tween.tween_property(image, "modulate:a", 1.0, 0.5)
+			target.modulate.a = 0.0
+			sprite_anim_tween.tween_property(target, "modulate:a", 1.0, 0.5)
 
 		"fade_out":
-			sprite_anim_tween.tween_property(image, "modulate:a", 0.0, 0.5)
+			sprite_anim_tween.tween_property(target, "modulate:a", 0.0, 0.5)
 
 		"zoom":
-			var orig_scale = _image_original_scale
-			sprite_anim_tween.tween_property(image, "scale", orig_scale * 1.15, 0.2).set_ease(Tween.EASE_OUT)
-			sprite_anim_tween.tween_property(image, "scale", orig_scale, 0.3).set_ease(Tween.EASE_IN_OUT)
+			var orig_scale = _container_original_scale
+			sprite_anim_tween.tween_property(target, "scale", orig_scale * 1.15, 0.2).set_ease(Tween.EASE_OUT)
+			sprite_anim_tween.tween_property(target, "scale", orig_scale, 0.3).set_ease(Tween.EASE_IN_OUT)
 
 		"slide_left":
-			image.position.x = _image_original_pos.x + 300
-			sprite_anim_tween.tween_property(image, "position:x", _image_original_pos.x, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			target.position.x = _container_original_pos.x + 300
+			sprite_anim_tween.tween_property(target, "position:x", _container_original_pos.x, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 		"slide_right":
-			image.position.x = _image_original_pos.x - 300
-			sprite_anim_tween.tween_property(image, "position:x", _image_original_pos.x, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			target.position.x = _container_original_pos.x - 300
+			sprite_anim_tween.tween_property(target, "position:x", _container_original_pos.x, 0.4).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 		_:
 			printerr("未知的立绘动画: ", anim_name)
@@ -343,8 +399,11 @@ func _handle_game_end() -> void:
 
 func _on_click(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
-		if dialogue_index > 0 and dialogue_index >= len(current_dialogue.dialogue_list) and is_end_dialogue:
-			_handle_game_end()
+		if dialogue_index > 0 and dialogue_index >= len(current_dialogue.dialogue_list):
+			if is_end_dialogue:
+				_handle_game_end()
+			else:
+				display_next_dialogue()
 		elif dialogue_index > 0 and dialogue_index <= len(current_dialogue.dialogue_list):
 			var current_item = current_dialogue.dialogue_list[dialogue_index - 1]
 			if !current_item.is_choice:

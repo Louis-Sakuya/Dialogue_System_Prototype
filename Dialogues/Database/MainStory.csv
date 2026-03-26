@@ -1,3 +1,3 @@
-group_id,dialogue_id,character_name,content,content_en,avatar_path,show_on_left,bg_path,image_path,sprite_anim,is_choice,choices_json,bgm,isEND,affection_json,is_checkpoint,chapter_id,chapter_name
-intro,0,旁白,这是一个示例剧情。请在此CSV中填入你的实际剧情内容。,This is a sample story. Please fill in your actual story content in this CSV.,,false,,,,,false,,1,false,,true,ch_01,序章
-intro,1,旁白,你可以在此处添加更多对话行。每一行代表一句对话。,You can add more dialogue lines here. Each row represents one line of dialogue.,,false,,,,false,,,false,,false,,
+group_id,dialogue_id,character_name,content,content_en,avatar_path,show_on_left,bg_path,image_path,sprite_anim,is_choice,choices_json,bgm,sfx,isEND,affection_json,is_checkpoint,chapter_id,chapter_name
+intro,0,旁白,这是一个示例剧情。请在此CSV中填入你的实际剧情内容。,This is a sample story. Please fill in your actual story content in this CSV.,,false,,,,,false,,1,,false,,true,ch_01,序章
+intro,1,旁白,你可以在此处添加更多对话行。每一行代表一句对话。,You can add more dialogue lines here. Each row represents one line of dialogue.,,false,,,,false,,,,false,,false,,

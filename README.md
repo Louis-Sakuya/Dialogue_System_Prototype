@@ -44,10 +44,10 @@
 ├── Localization/
 │   └── dialogue_translations.csv  # 翻译文件
 └── assets/
-    ├── BG/                     # 背景图
-    ├── avatars/                # 头像
-    ├── sprites/                # 角色立绘（按 角色名_表情.png 命名）
-    └── music/                  # BGM 音乐文件
+	├── BG/                     # 背景图
+	├── avatars/                # 头像
+	├── sprites/                # 角色立绘（按 角色名_表情.png 命名）
+	└── music/                  # BGM 音乐文件
 ```
 
 ## CSV 格式说明
@@ -69,7 +69,9 @@
 | `is_choice` | Bool | 否 | 是否为选项对话 |
 | `choices_json` | String | 否 | 选项 JSON 数组（见格式示例） |
 | `bgm` | Int | 否 | BGM ID：>0 播放, =0 停止, 留空或 <0 保持当前 |
+| `sfx` | String | 否 | 音效路径，填 `STOP` 停止当前音效，留空不操作 |
 | `isEND` | Bool | 否 | 是否为剧情终点 |
+| `group_to` | String | 否 | 该组结束后自动跳转的目标 group_id（非 END 时生效） |
 | `affection_json` | String | 否 | 非选项好感值变化 JSON |
 | `is_checkpoint` | Bool | 否 | 是否为章节存档点 |
 | `chapter_id` | String | 否 | 章节 ID，如 `ch_01` |
@@ -90,36 +92,87 @@
 
 ### choices_json 格式
 
+#### 示例1：无条件选项
+
 ```json
 [
   {
-    "text": "帮助她",
-    "text_en": "Help her",
-    "result_group": "ch1_help",
-    "affection": [
-      {"char": "sakura", "value": 5},
-      {"char": "rival", "value": -2}
-    ]
-  },
-  {
-    "text": "走开",
-    "text_en": "Walk away",
-    "result_group": "ch1_leave",
-    "affection": [{"char": "sakura", "value": -3}]
-  },
-  {
-    "text": "观望",
-    "text_en": "Watch",
-    "result_group": "ch1_watch",
-    "affection": []
+	"text": "帮助她",
+	"text_en": "Help her",
+	"result_group": "ch1_help",
+	"affection": [{"char": "sakura", "value": 5}]
   }
 ]
 ```
 
-- `text`: 选项文本（默认语言）
-- `text_en`: 英文翻译
-- `result_group`: 跳转目标的 group_id
-- `affection`: 好感值变化数组，`char` 为角色 ID，`value` 为增减值
+#### 示例2：硬锁定（不满足条件 → 不可点击）
+
+```json
+[
+  {
+	"text": "表白",
+	"text_en": "Confess",
+	"result_group": "confess",
+	"affection": [{"char": "sakura", "value": 10}],
+	"condition": {"type": "affection", "char": "sakura", "op": ">=", "value": 20},
+	"lock_reason": "需要与樱的好感度达到20",
+	"lock_reason_en": "Sakura affection must reach 20"
+  }
+]
+```
+
+#### 示例3：软锁定（不满足条件 → 仍可点击，走失败分支）
+
+```json
+[
+  {
+	"text": "表白",
+	"text_en": "Confess",
+	"result_group": "confess_success",
+	"affection": [{"char": "sakura", "value": 10}],
+	"condition": {"type": "affection", "char": "sakura", "op": ">=", "value": 20},
+	"lock_reason": "好感不足",
+	"lock_reason_en": "Not enough affection",
+	"fail_group": "confess_rejected",
+	"fail_affection": [{"char": "sakura", "value": -5}]
+  }
+]
+```
+
+#### 字段说明
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `text` | 是 | 选项文本（默认语言） |
+| `text_en` | 否 | 英文翻译 |
+| `result_group` | 是 | 条件满足时的跳转目标 group_id |
+| `affection` | 否 | 条件满足时的好感值变化 |
+| `condition` | 否 | 前置条件。不填则始终可选 |
+| `lock_reason` | 否 | 条件不满足时显示的提示文本 |
+| `lock_reason_en` | 否 | 提示文本英文翻译 |
+| `fail_group` | 否 | 条件不满足时的替代跳转目标（有此字段=软锁定，无=硬锁定） |
+| `fail_affection` | 否 | 条件不满足时的好感值变化 |
+
+#### condition 格式
+
+```json
+{"type": "affection", "char": "角色ID", "op": "运算符", "value": 阈值}
+```
+
+| 参数 | 说明 |
+|------|------|
+| `type` | 条件类型，目前支持 `affection`（好感值判定） |
+| `char` | 角色 ID，如 `"sakura"` |
+| `op` | 比较运算符：`>=` `>` `<=` `<` `==` `!=` |
+| `value` | 比较阈值（整数） |
+
+#### 锁定行为对比
+
+| 模式 | 条件 | 按钮表现 |
+|------|------|----------|
+| 无条件 | 不填 `condition` | 正常显示，可点击 → `result_group` |
+| 硬锁定 | 有 `condition`，无 `fail_group` | 不满足时显示 `[lock_reason]`，置灰不可点击 |
+| 软锁定 | 有 `condition`，有 `fail_group` | 不满足时选项文本后附加 `[lock_reason]`，可点击 → `fail_group` |
 
 ### affection_json 格式
 
@@ -128,6 +181,16 @@
 ```
 
 用于非选项对话自动触发的好感值变化。
+
+### group_to 对话组跳转
+
+`group_to` 用于控制对话组播放完毕后自动跳转到下一个对话组。只需在该组**任意一行**（推荐最后一行）的 `group_to` 列填写目标 group_id 即可。
+
+| 场景 | isEND | group_to | 行为 |
+|------|-------|----------|------|
+| 普通对话结束，自动接续下一段 | `false` | `ch1_part2` | 播完后自动跳转到 `ch1_part2` |
+| 剧情结局 | `true` | (留空) | 播完后触发结局流程 |
+| 对话组以选项结尾（选项自带跳转） | `false` | (留空) | 选项的 `result_group` 已处理跳转 |
 
 ### CSV 示例
 

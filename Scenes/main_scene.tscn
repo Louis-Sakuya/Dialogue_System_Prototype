@@ -66,7 +66,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0.519822, 0.850209, 1)
 
-[node name="Control" type="Control" node_paths=PackedStringArray("character_name_label", "text_box", "left_avatar", "right_avatar", "bg", "image", "choice_box", "save_panel", "load_panel", "save_slots_container", "load_slots_container", "save_back_button", "load_back_button", "main_menu_button", "settings_panel", "volume_slider", "volume_label", "settings_back_button", "log_panel", "log_container", "log_back_button")]
+[node name="Control" type="Control" node_paths=PackedStringArray("character_name_label", "text_box", "left_avatar", "right_avatar", "bg", "image_container", "choice_box", "save_panel", "load_panel", "save_slots_container", "load_slots_container", "save_back_button", "load_back_button", "main_menu_button", "settings_panel", "volume_slider", "volume_label", "settings_back_button", "log_panel", "log_container", "log_back_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,7 +79,7 @@ text_box = NodePath("HBoxContainer/Panel/MarginContainer/VBoxContainer/Text")
 left_avatar = NodePath("HBoxContainer/LeftAvatar")
 right_avatar = NodePath("HBoxContainer/RightAvatar")
 bg = NodePath("BG")
-image = NodePath("Image")
+image_container = NodePath("ImageContainer")
 choice_box = NodePath("ChoiceBox")
 save_panel = NodePath("SavePanel")
 load_panel = NodePath("LoadPanel")
@@ -105,21 +105,22 @@ texture = ExtResource("2_x6ack")
 expand_mode = 2
 stretch_mode = 6
 
-[node name="Image" type="TextureRect" parent="."]
+[node name="ImageContainer" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -318.5
+offset_left = -400.0
 offset_top = -331.5
-offset_right = 316.5
+offset_right = 400.0
 offset_bottom = 332.5
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 4
-stretch_mode = 5
+theme_override_constants/separation = 20
+alignment = 1
 
 [node name="ChoiceBox" type="VBoxContainer" parent="."]
 visible = false

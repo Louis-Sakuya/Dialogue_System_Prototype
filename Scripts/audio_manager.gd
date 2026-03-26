@@ -2,7 +2,8 @@ extends Node
 
 # 音频播放器
 var music_player: AudioStreamPlayer
-var current_bgm_id: int = -1 # 当前播放的BGM ID，-1表示无
+var sfx_player: AudioStreamPlayer
+var current_bgm_id: int = -1
 
 # 渐变效果控制
 var fade_tween: Tween
@@ -32,13 +33,16 @@ var bgm_paths = {
 }
 
 func _ready() -> void:
-	# 创建音频播放器
 	music_player = AudioStreamPlayer.new()
-	music_player.bus = "Music" # 假设你有一个名为"Music"的音频总线
-	music_player.volume_db = default_volume_db # 设置默认音量
+	music_player.bus = "Music"
+	music_player.volume_db = default_volume_db
 	add_child(music_player)
-	
-	# 设置循环播放
+
+	sfx_player = AudioStreamPlayer.new()
+	sfx_player.bus = "Master"
+	sfx_player.volume_db = default_volume_db
+	add_child(sfx_player)
+
 	music_player.finished.connect(func(): 
 		if current_bgm_id > 0:
 			play_music(current_bgm_id)
@@ -177,3 +181,17 @@ func get_master_volume() -> float:
 	var bus_index = AudioServer.get_bus_index("Master")
 	var volume_db = AudioServer.get_bus_volume_db(bus_index)
 	return db_to_linear(volume_db)
+
+# 播放单次音效（通过文件路径，不影响 BGM）
+func play_sfx(sfx_path: String) -> void:
+	if not ResourceLoader.exists(sfx_path):
+		printerr("音效文件不存在: ", sfx_path)
+		return
+	var stream = load(sfx_path)
+	if stream:
+		sfx_player.stream = stream
+		sfx_player.play()
+
+# 停止当前音效（不影响 BGM）
+func stop_sfx() -> void:
+	sfx_player.stop()

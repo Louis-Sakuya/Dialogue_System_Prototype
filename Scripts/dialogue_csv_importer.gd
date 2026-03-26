@@ -10,12 +10,14 @@
 # avatar_path     : 头像图片路径，如 res://assets/avatars/sakura.png
 # show_on_left    : 头像显示在左侧 true/false
 # bg_path         : 背景图路径，如 res://assets/BG/school.jpg（留空保持上一帧）
-# image_path      : 立绘图路径，如 res://assets/sprites/sakura_happy.png
+# image_path      : 立绘图路径，多张用 | 分隔（如 res://assets/sprites/sakura.png|res://assets/sprites/rival.png）
 # sprite_anim     : 立绘动画名: shake/bounce/fade_in/fade_out/zoom/slide_left/slide_right（留空=无动画）
 # is_choice       : 是否为选项对话 true/false
 # choices_json    : 选项 JSON 数组，格式见下方示例（仅 is_choice=true 时填写）
 # bgm             : BGM ID 整数，>0 播放, =0 停止, 留空或 <0 保持当前
+# sfx             : 音效文件路径（如 res://assets/sfx/hit.wav），填 STOP 停止当前音效，留空=不操作
 # isEND           : 是否为剧情终点 true/false
+# group_to        : 该组结束后跳转的目标 group_id（非 END 时生效，留空=不跳转）
 # affection_json  : 非选项好感值变化 JSON 数组（可选）
 # is_checkpoint   : 是否为章节节点 true/false
 # chapter_id      : 章节 ID，如 ch_01（仅 is_checkpoint=true 时填写）
@@ -23,20 +25,38 @@
 #
 # ==================== JSON 格式示例 ====================
 #
-# choices_json 示例:
-#   [{"text":"帮助她","text_en":"Help her","result_group":"ch1_help","affection":[{"char":"sakura","value":5}]},
-#    {"text":"走开","text_en":"Walk away","result_group":"ch1_leave","affection":[{"char":"sakura","value":-3}]},
-#    {"text":"观望","text_en":"Watch","result_group":"ch1_watch","affection":[]}]
+# choices_json 示例（无前置条件）:
+#   [{"text":"帮助她","text_en":"Help her","result_group":"ch1_help","affection":[{"char":"sakura","value":5}]}]
+#
+# choices_json 示例（硬锁定 - 不满足条件不可点击）:
+#   [{"text":"表白","text_en":"Confess","result_group":"confess",
+#     "affection":[{"char":"sakura","value":10}],
+#     "condition":{"type":"affection","char":"sakura","op":">=","value":20},
+#     "lock_reason":"需要与樱的好感度达到20","lock_reason_en":"Sakura affection must reach 20"}]
+#
+# choices_json 示例（软锁定 - 不满足条件仍可选，跳转 fail_group）:
+#   [{"text":"表白","text_en":"Confess","result_group":"confess",
+#     "affection":[{"char":"sakura","value":10}],
+#     "condition":{"type":"affection","char":"sakura","op":">=","value":20},
+#     "lock_reason":"好感不足","lock_reason_en":"Not enough affection",
+#     "fail_group":"confess_rejected","fail_affection":[{"char":"sakura","value":-5}]}]
+#
+# condition 支持的运算符: >=, >, <=, <, ==, !=
+# condition 支持的类型: affection（好感值判定）
+# lock_reason: 条件不满足时的提示文本
+# fail_group: 软锁定时不满足条件的跳转目标（有此字段=软锁定，无此字段=硬锁定）
+# fail_affection: 软锁定选择时的好感值变化（可选）
 #
 # affection_json 示例:
 #   [{"char":"sakura","value":3},{"char":"rival","value":-1}]
 #
 # ==================== 素材路径约定 ====================
 #
-# 立绘:  res://assets/sprites/{角色名}_{表情}.png  (如 sakura_happy.png, sakura_sad.png)
+# 立绘:  res://assets/sprites/{角色名}_{表情}.png  (多张用 | 分隔，如 sakura_happy.png|rival_angry.png)
 # 头像:  res://assets/avatars/{角色名}.png
 # 背景:  res://assets/BG/{场景名}.jpg
 # 音乐:  通过 AudioManager BGM ID 引用，映射表在 audio_manager.gd 中定义
+# 音效:  res://assets/sfx/{音效名}.wav 或 .mp3 或 .ogg
 extends Node
 
 var dialogue_groups = {}
@@ -93,18 +113,26 @@ func import_csv(csv_path: String) -> Dictionary:
 			else:
 				printerr("无法加载背景资源：", bg_path)
 
-		var image_path = row_data.get("image_path", "")
-		if image_path != "":
-			if ResourceLoader.exists(image_path):
-				dialogue.image = load(image_path)
-			else:
-				printerr("无法加载立绘资源：", image_path)
+		var image_path_raw = row_data.get("image_path", "")
+		if image_path_raw != "":
+			var paths = image_path_raw.split("|")
+			var textures: Array[Texture] = []
+			for p in paths:
+				var trimmed = p.strip_edges()
+				if trimmed == "":
+					continue
+				if ResourceLoader.exists(trimmed):
+					textures.append(load(trimmed))
+				else:
+					printerr("无法加载立绘资源：", trimmed)
+			dialogue.images = textures
 
 		dialogue.sprite_anim = row_data.get("sprite_anim", "")
 		dialogue.is_choice = row_data.get("is_choice", "false").to_lower() == "true"
 
 		var bgm_str = row_data.get("bgm", "")
 		dialogue.bgm = int(bgm_str) if bgm_str.is_valid_int() else -1
+		dialogue.sfx = row_data.get("sfx", "")
 		dialogue.isEND = row_data.get("isEND", "false").to_lower() == "true"
 
 		# 解析非选项好感值变化
@@ -138,8 +166,9 @@ func import_csv(csv_path: String) -> Dictionary:
 		dialogue_group.dialogue_list = typed_array
 		dialogue_groups[group_id] = dialogue_group
 
-	# 第二遍：解析选项的 result_group 引用（需要所有 group 都已创建）
+	# 第二遍：解析选项的 result_group 引用 + group_to 跳转（需要所有 group 都已创建）
 	for group_id in dialogues_by_group.keys():
+		var last_group_to := ""
 		for dialogue_id in dialogues_by_group[group_id].keys():
 			var dialogue = dialogues_by_group[group_id][dialogue_id]
 			var key = group_id + "_" + str(dialogue_id)
@@ -150,8 +179,14 @@ func import_csv(csv_path: String) -> Dictionary:
 				if choices_json_str.strip_edges() != "":
 					dialogue.choices = _parse_choices_json(choices_json_str)
 				else:
-					# 兼容旧格式 choice1/choice2/result1_group/result2_group
 					dialogue.choices = _parse_legacy_choices(row_data)
+
+			var gt = row_data.get("group_to", "").strip_edges()
+			if gt != "":
+				last_group_to = gt
+
+		if last_group_to != "" and dialogue_groups.has(last_group_to):
+			dialogue_groups[group_id].next_group = dialogue_groups[last_group_to]
 
 	return dialogue_groups
 
@@ -184,6 +219,23 @@ func _parse_choices_json(json_str: String) -> Array[DialogueChoice]:
 			change.value = int(aff.get("value", 0))
 			changes.append(change)
 		choice.affection_changes = changes
+
+		choice.condition = item.get("condition", {})
+		choice.lock_reason = item.get("lock_reason", "")
+		choice.lock_reason_en = item.get("lock_reason_en", "")
+
+		var fail_group_id = item.get("fail_group", "")
+		if fail_group_id != "" and dialogue_groups.has(fail_group_id):
+			choice.fail_group = dialogue_groups[fail_group_id]
+
+		var fail_aff_arr = item.get("fail_affection", [])
+		var fail_changes: Array[AffectionChange] = []
+		for aff in fail_aff_arr:
+			var change = AffectionChange.new()
+			change.character_id = aff.get("char", "")
+			change.value = int(aff.get("value", 0))
+			fail_changes.append(change)
+		choice.fail_affection_changes = fail_changes
 
 		result.append(choice)
 	return result

@@ -39,6 +39,28 @@ func get_ending_character() -> String:
 			best_char = char_id
 	return best_char
 
+func check_condition(condition: Dictionary) -> bool:
+	if condition.is_empty():
+		return true
+	var type = condition.get("type", "")
+	if type == "affection":
+		var char_id = condition.get("char", "")
+		var op = condition.get("op", ">=")
+		var threshold = int(condition.get("value", 0))
+		var current = get_affection(char_id)
+		match op:
+			">=": return current >= threshold
+			">":  return current > threshold
+			"<=": return current <= threshold
+			"<":  return current < threshold
+			"==": return current == threshold
+			"!=": return current != threshold
+			_:
+				printerr("未知的比较运算符: ", op)
+				return false
+	printerr("未知的条件类型: ", type)
+	return false
+
 func apply_affection_changes(changes: Array) -> void:
 	for change in changes:
 		if change is AffectionChange:

@@ -7,11 +7,12 @@
 #   avatar           : 角色头像纹理（显示在对话框左/右侧）
 #   show_on_left     : true=头像在左侧, false=右侧
 #   BG               : 背景图纹理（留空则保持上一帧背景）
-#   image            : 角色立绘纹理（显示在画面中央区域）
+#   images           : 角色立绘纹理数组（显示在画面中央区域，多张时并列排开）
 #   sprite_anim      : 立绘动画名称: "shake"/"bounce"/"fade_in"/"fade_out"/"zoom"/"slide_left"/"slide_right"/""
 #   is_choice        : 是否为选项对话
 #   choices          : 选项列表（仅 is_choice=true 时有效），数量不限
 #   bgm              : BGM ID，>0 播放对应音乐, =0 停止, <0 保持当前
+#   sfx              : 音效文件路径（播放单次音效），填 "STOP" 停止当前音效，留空=不操作
 #   isEND            : 是否为剧情终点（触发结局流程）
 #   affection_changes: 非选项对话触发的固定好感值变化
 #   is_checkpoint    : 是否为章节存档点（通关后可从此处重新开始）
@@ -27,11 +28,12 @@ class_name Dialogue
 @export var avatar: Texture
 @export var show_on_left: bool
 @export var BG: Texture
-@export var image: Texture
+@export var images: Array[Texture] = []
 @export var sprite_anim: String
 @export var is_choice: bool
 @export var choices: Array[DialogueChoice] = []
 @export var bgm: int = -1
+@export var sfx: String
 @export var isEND: bool
 @export var affection_changes: Array[AffectionChange] = []
 @export var is_checkpoint: bool
